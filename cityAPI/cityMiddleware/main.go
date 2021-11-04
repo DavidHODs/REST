@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/justinas/alice"
 )
 
 type city struct {
@@ -62,6 +64,8 @@ func postHandler(w http.ResponseWriter, req *http.Request) {
 func main() {
 	// http.HandleFunc("/city", postHandler)
 	originalHandler := http.HandlerFunc(postHandler)
-	http.Handle("/city", filterContentType(setServerTimeCookie(originalHandler)))
+	// http.Handle("/city", filterContentType(setServerTimeCookie(originalHandler)))
+	chain := alice.New(filterContentType, setServerTimeCookie).Then(originalHandler)
+	http.Handle("/city", chain)
 	http.ListenAndServe(":8080", nil)
 }
