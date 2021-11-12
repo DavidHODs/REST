@@ -9,5 +9,6 @@ require (
 	github.com/gorilla/rpc v1.2.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/justinas/alice v1.2.0 // indirect
+	github.com/lib/pq v1.10.4 // indirect
 	go.mongodb.org/mongo-driver v1.7.4 // indirect
 )
